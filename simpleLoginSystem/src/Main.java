@@ -1,25 +1,25 @@
 import java.util.Scanner;
 public class Main {
     public static void main(String[]args){
+        //Declare variables:
         String email;
         String password;
         String phoneNumber;
         String userName;
         String domain;
-
+        String newPhoneNum;
         int emailLength;
         int atIndex;
         int dotIndex;
         int passwordLength;
-        
+
         boolean valid = false;
         boolean emailValid;
         boolean passwordValid;
         boolean phoneNumValid;
         Scanner scanner = new Scanner(System.in);
+        //loop:
         do {
-
-
             //get email:
             System.out.print("what's your email: ");
             email = scanner.nextLine();
@@ -65,6 +65,8 @@ public class Main {
                 System.out.println("phone number accepted!");
                 System.out.println(userName);
                 System.out.println(domain);
+                newPhoneNum = phoneNumber.replace("+213" , "0");
+                System.out.println(newPhoneNum);
                 valid = true;
             }
         }
