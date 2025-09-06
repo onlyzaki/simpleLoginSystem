@@ -15,7 +15,6 @@ public class Main {
 
         boolean valid = false;
         boolean emailValid;
-        boolean passwordValid;
         boolean phoneNumValid;
         Scanner scanner = new Scanner(System.in);
         //loop:
@@ -28,7 +27,7 @@ public class Main {
             dotIndex = email.indexOf(".");
 
             //validate Email format:
-            emailValid = atIndex > 0 && atIndex < dotIndex && emailLength > 5 && email.matches(".*[A-Za-z].*") && dotIndex < emailLength -1;
+            emailValid = atIndex > 0 && atIndex < dotIndex && emailLength > 5 && email.matches(".*[a-z].*") && dotIndex < emailLength -1;
             if (emailValid) {
                 //put username/domain:
                 userName = email.substring(0, atIndex);
@@ -44,11 +43,20 @@ public class Main {
             passwordLength = password.length();
 
             //validate password format:
-            passwordValid =  passwordLength > 8 && password.matches(".*[A-Z].*") && password.matches(".*[a-z].*") && password.matches(".*[0-9].*");
-            if (!passwordValid){
-                System.out.println("invalid password, try again!");
+            //  &&  &&  &&
+            if (passwordLength < 8){
+                System.out.println("password is too short, try again!");
                 continue;
-            }else {
+            } else if (!(password.matches(".*[A-Z].*"))) {
+                System.out.println("password should have at least one uppercase letter, try again!");
+                continue;
+            } else if (!(password.matches(".*[a-z].*"))) {
+                System.out.println("password should have a combination of upper/lowercase letters, try again!");
+                continue;
+            } else if (!(password.matches(".*[0-9].*"))) {
+                System.out.println("password should have at least one number, try again!");
+                continue;
+            } else {
                 System.out.println("Password accepted!");
             }
 
