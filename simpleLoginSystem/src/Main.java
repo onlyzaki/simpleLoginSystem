@@ -1,3 +1,16 @@
+/*
+string.length(); give the length of string
+String.charAt(num); means the letter in the index number
+String.indexOf(char); checks on what index is the char
+String.lastIndex(char);
+String.trim(); remove blanks
+String.replaceAll("" , "");
+String.isEmpty();
+String.contains(" ");
+String.substring(num,num);
+*/
+
+
 import java.util.Scanner;
 public class Main {
     public static void main(String[]args){
@@ -21,7 +34,7 @@ public class Main {
         do {
             //get email:
             System.out.print("what's your email: ");
-            email = scanner.nextLine();
+            email = scanner.nextLine().trim();
             emailLength = email.length();
             atIndex = email.indexOf("@");
             dotIndex = email.indexOf(".");
@@ -29,22 +42,26 @@ public class Main {
             //validate Email format:
             emailValid = atIndex > 0 && atIndex < dotIndex && emailLength > 5 && email.matches(".*[a-z].*") && dotIndex < emailLength -1;
             if (emailValid) {
-                //put username/domain:
-                userName = email.substring(0, atIndex);
-                domain = email.substring(atIndex + 1);
+                valid = true;
             } else {
                 System.out.println("invalid email address, try again!");
                 continue;
             }
-
+        }
+        while (!valid);
+        valid = false;
+        //put username/domain:
+        userName = email.substring(0, atIndex);
+        domain = email.substring(atIndex + 1);
+        do {
             //get password:
             System.out.print("what's your password: ");
-            password = scanner.nextLine();
+            password = scanner.nextLine().trim();
             passwordLength = password.length();
 
             //validate password format:
             //  &&  &&  &&
-            if (passwordLength < 8){
+            if (passwordLength < 8) {
                 System.out.println("password is too short, try again!");
                 continue;
             } else if (!(password.matches(".*[A-Z].*"))) {
@@ -58,7 +75,13 @@ public class Main {
                 continue;
             } else {
                 System.out.println("Password accepted!");
+                valid = true;
             }
+        }
+        while (!valid);
+        valid = false;
+        do {
+
 
             //get phoneNumber:
             System.out.print("what's your phone number: ");
@@ -66,23 +89,20 @@ public class Main {
 
             //validate phoneNumber:
             phoneNumValid = phoneNumber.matches("\\+\\d{10,14}");
-            if (!phoneNumValid){
+            if (!phoneNumValid) {
                 System.out.println("invalid phone number, try again!");
                 continue;
-            }else {
+            } else {
                 System.out.println("phone number accepted!");
-                System.out.println(userName);
-                System.out.println(domain);
-                newPhoneNum = phoneNumber.replace("+213" , "0");
-                System.out.println(newPhoneNum);
+                System.out.println("your username is: " + userName);
+                System.out.println("your domain is: " + domain);
+                newPhoneNum = phoneNumber.replace("+213", "0");
+                System.out.println("your phone number is: " + newPhoneNum);
                 valid = true;
             }
         }
-
         while (!valid);
-
-
-
+        System.out.println("Thank you for using my email check program, by onlyzaki");
         scanner.close();
     }
 }
